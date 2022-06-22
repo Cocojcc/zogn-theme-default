@@ -1,0 +1,36 @@
+{% extends 'layout/base.html' %}
+{% load blog_tags %}
+{% load cache %}
+{% block header %}
+    {% if tag_name %}
+        {% if statuscode == '404' %}
+            <title>404 NotFound</title>
+        {% elif statuscode == '403' %}
+            <title>Permission Denied</title>
+        {% elif statuscode == '500' %}
+            <title>500 Error</title>
+        {% else %}
+            <title></title>
+        {% endif %}
+    {% else %}
+        <title>Unknown | {{ SITE_NAME }}</title>
+    {% endif %}
+    <meta name="description" content="{{ SITE_SEO_DESCRIPTION }}"/>
+    <meta name="keywords" content="{{ SITE_KEYWORDS }}"/>
+    <meta property="og:type" content="blog"/>
+    <meta property="og:title" content="{{ SITE_NAME }}"/>
+    <meta property="og:description" content="{{ SITE_DESCRIPTION }}"/>
+    <meta property="og:url" content="{{ SITE_BASE_URL }}"/>
+    <meta property="og:site_name" content="{{ SITE_NAME }}"/>
+{% endblock %}
+
+{% block main_content %}
+    <main>
+        <div>
+            <header>
+                <h2>{{ message }}</h2>
+            </header>
+        </div>
+    </main>
+{% endblock %}
+
