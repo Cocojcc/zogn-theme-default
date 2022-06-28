@@ -290,15 +290,36 @@ nav {
 }
 
 
+.tags-list {
+    float: left;
+    list-style: none;
+    padding-right: 20px;
+    margin-top: 10px;
+}
+
+.tags-list a:hover {
+    text-decoration: underline;
+}
+
+.article-tags {
+    display: inline-block;
+    margin-left: 20px;
+    line-height: 12px;
+}
+
+.article-tags li {
+    list-style: none;
+    margin-left: 10px;
+    float: left;
+}
+
 @media only screen and (max-width: 600px) {
     main {
-        overflow: hidden;
+        /*overflow: hidden;*/
         font-size: 16px !important;
-        width: 100%;
     }
 
     .menu {
-        /*float: none;*/
         padding-inline-start: 0;
     }
 
@@ -317,5 +338,9 @@ nav {
 
     .article-list {
         font-size: 1rem;
+    }
+
+    .article-tags {
+        margin-left: 10px;
     }
 }

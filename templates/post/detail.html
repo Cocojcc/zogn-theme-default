@@ -3,7 +3,8 @@
 {% block header %}
     <title>{{ article.title }} | {{ SITE_NAME }}</title>
 
-    <meta name="description" content="{{ SITE_SEO_DESCRIPTION }}"/>
+    <meta name="description" content="{{ SITE_DESCRIPTION }}"/>
+    <meta name="keywords" content="{{ (",").join(article.tags) }}"/>
     <meta property="og:type" content="article"/>
     <meta property="og:title" content="{{ article.title }}"/>
 
@@ -13,8 +14,20 @@
     <div class="article-meta">
         <h1 class="title">{{ article.title }}</h1>
         <div class="article-attrs">
+
             <span class="author"><a href="/about.html">@zo9n</a></span>
             <span class="date"><time>{{ article.date.strftime("%b %d, %Y") }}</time></span>
+
+            <div class="article-tags">
+                <ul>
+                    {% for tag in article.tags %}
+                        <li>
+                            <a href="/tag/{{ tag }}.html">#{{ tag }}</a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+
         </div>
     </div>
 
