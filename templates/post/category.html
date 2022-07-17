@@ -1,51 +1,50 @@
 {% extends 'layout/base.html' %}
 
 {% block header %}
-{% if category_name %}
-<title>{{ category_name }} | {{ SITE_NAME }}</title>
-<meta name="description" content="{{ description }}"/>
-{% else %}
-<title>Home | {{ SITE_NAME }}</title>
-<meta name="description" content="{{ SITE_SEO_DESCRIPTION }}"/>
-{% endif %}
-<meta name="keywords" content="{{ SITE_KEYWORDS }}"/>
-<meta property="og:type" content="website"/>
-<meta property="og:title" content="{{ SITE_NAME }}"/>
-<meta property="og:description" content="{{ SITE_SHORT_DESC }}"/>
-<meta property="og:url" content="{{ SITE_BASE_URL }}"/>
-<meta property="og:site_name" content="{{ SITE_NAME }}"/>
+    {% if category_name %}
+        <title>{{ category_name }} | {{ SITE_NAME }}</title>
+        <meta name="description" content="{{ SITE_DESCRIPTION }}"/>
+    {% else %}
+        <title>{{ SITE_NAME }}</title>
+    {% endif %}
+    <meta name="keywords" content="{{ SITE_KEYWORDS }}"/>
+    <meta property="og:type" content="website"/>
+    <meta property="og:title" content="{{ SITE_NAME }}"/>
+    <meta property="og:description" content="{{ SITE_DESCRIPTION }}"/>
+    <meta property="og:url" content="{{ SITE_URL }}"/>
+    <meta property="og:site_name" content="{{ SITE_NAME }}"/>
 {% endblock %}
 
 {% block main_content %}
-<div class="category-name">
-    <h1>{{ category_name }}</h1>
-</div>
-<div class="container post-list">
-    {% for year, list in articles|groupby('date.year')|sort(attribute="grouper", reverse=True) %}
+    <div class="category-name">
+        <h1>{{ category_name }}</h1>
+    </div>
+    <div class="container post-list">
+        {% for year, list in articles|groupby('date.year')|sort(attribute="grouper", reverse=True) %}
 
-    <h2 class="archive-title">{{ year }}</h2>
+            <h2 class="archive-title">{{ year }}</h2>
 
-    <ul>
-        {% for article in list %}
+            <ul>
+                {% for article in list %}
 
-        <li class="article-list">
+                    <li class="article-list">
 
-            <div class="list-date article-list-item">
+                        <div class="list-date article-list-item">
                                 <span>
-                                    {{ article.date.strftime("%b %d")}}
+                                    {{ article.date.strftime("%b %d") }}
                                 </span>
-            </div>
-            <div class="list-title article-list-item">
+                        </div>
+                        <div class="list-title article-list-item">
 
                             <span>
                                 <a href="/post/{{ article.slug }}.html" title="{{ article.title }}"
                                    itemprop="url">{{ article.title }}</a>
                             </span>
-            </div>
-        </li>
+                        </div>
+                    </li>
+                {% endfor %}
+            </ul>
         {% endfor %}
-    </ul>
-    {% endfor %}
-</div>
+    </div>
 {% endblock %}
 
